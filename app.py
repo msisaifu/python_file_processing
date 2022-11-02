@@ -96,35 +96,41 @@ def main():
             print(message)
             command = input()
             if command == "1":
-                start_year = int(input("Enter beginning year: "))
-                end_year = int(input("Enter ending year: "))
-                filtered_book_lists = get_book_between_year(
-                    book_lists, start_year, end_year)
+                try:
+                    start_year = int(input("Enter beginning year: "))
+                    end_year = int(input("Enter ending year: "))
+                    filtered_book_lists = get_book_between_year(
+                        book_lists, start_year, end_year)
 
-                if len(filtered_book_lists) > 0:
-                    print(
-                        'All titles between {0} and {1}:\n'.format(start_year, end_year))
-                    show_filter_books(filtered_book_lists)
-                else:
-                    print(
-                        'No books found between {0} and {1}'.format(start_year, end_year))
+                    if len(filtered_book_lists) > 0:
+                        print(
+                            'All titles between {0} and {1}:\n'.format(start_year, end_year))
+                        show_filter_books(filtered_book_lists)
+                    else:
+                        print(
+                            'No books found between {0} and {1}'.format(start_year, end_year))
+                except ValueError:
+                    print("No valid input! Please try again ...")
             elif command == "2":
-                month = int(input("Enter month (as a number, 1-12): "))
-                if (month > 12 or month < 1):
-                    print("Month should be 1-12")
-                    continue
-                year = int(input("Enter year: "))
+                try:
+                    month = int(input("Enter month (as a number, 1-12): "))
+                    if (month > 12 or month < 1):
+                        print("Month should be 1-12")
+                        continue
+                    year = int(input("Enter year: "))
 
-                filtered_book_lists = get_book_by_month_year(
-                    book_lists, month, year)
+                    filtered_book_lists = get_book_by_month_year(
+                        book_lists, month, year)
 
-                if len(filtered_book_lists) > 0:
-                    print('All titles in month {0} of {1}:\n'.format(
-                        month, year))
-                    show_filter_books(filtered_book_lists)
-                else:
-                    print('No books found in month {0} of {1}'.format(
-                        month, year))
+                    if len(filtered_book_lists) > 0:
+                        print('All titles in month {0} of {1}:\n'.format(
+                            month, year))
+                        show_filter_books(filtered_book_lists)
+                    else:
+                        print('No books found in month {0} of {1}'.format(
+                            month, year))
+                except ValueError:
+                    print("No valid input! Please try again ...")
             elif command == "3":
                 author_name = input(
                     "Enter an author's name (or part of a name): ")
@@ -149,7 +155,8 @@ def main():
             elif (command == "q" or command == "Q"):
                 print("Process end, Thank you")
                 alive = False
-
+            else:
+                print("Your query is not found, Please enter valid command")
     else:
         print("bestsellers.txt file not exist in the directory")
 

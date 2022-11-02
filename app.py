@@ -53,7 +53,7 @@ def get_book_between_year(lists, start, end):
     return filtered_book_lists
 
 
-def get_book_by_month_year(lists, month=0, year=0):
+def get_book_by_month_year(lists, month, year):
     filtered_book_lists = []
     for book in lists:
         if (int(book[MONTH_INDEX]) == month and int(book[YEAR_INDEX]) == year):
@@ -64,7 +64,7 @@ def get_book_by_month_year(lists, month=0, year=0):
 def get_book_by_author_name(lists, name):
     filtered_book_lists = []
     for book in lists:
-        if (name in book[AUTHOR_INDEX].lower()):
+        if (name.lower() in book[AUTHOR_INDEX].lower()):
             filtered_book_lists.append(book)
 
     return filtered_book_lists
@@ -73,7 +73,7 @@ def get_book_by_author_name(lists, name):
 def get_book_by_title(lists, title):
     filtered_book_lists = []
     for book in lists:
-        if (title in book[TITLE_INDEX].lower()):
+        if (title.lower() in book[TITLE_INDEX].lower()):
             filtered_book_lists.append(book)
 
     return filtered_book_lists
